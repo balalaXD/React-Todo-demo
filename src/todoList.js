@@ -5,7 +5,7 @@ class TodoList extends Component {
     super(props);
     
     this.state = {
-      inputValue: 'ab',
+      inputValue: '',
       todoItems: []
     }
 
@@ -42,7 +42,7 @@ class TodoList extends Component {
     function RenderTodoItems({items, onClick}) {
       const itemsList = items.map((item, index) => {
         return (
-          <li key={index} onClick={() => onClick(index)}>{item}</li>
+          <li key={index} onClick={() => onClick(index)} dangerouslySetInnerHTML={{__html: item}}></li>
         )
       })
 
