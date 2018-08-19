@@ -16,26 +16,26 @@ class TodoList extends Component {
   }
 
   handleInputChange(event) {
-    const target = event.target;
-
-    this.setState({
-      inputValue: target.value
-    })
+    const value = event.target.value;
+    // WRONG if you write this one:  {inputValue: event.target.value} cause event pooling
+    this.setState(() => ({
+      inputValue: value
+    }))
   }
 
   handleButtonClick(event) {
-    this.setState({
+    this.setState((prevState) => ({
       inputValue: '',
-      todoItems: [...this.state.todoItems, this.state.inputValue]
-    })
+      todoItems: [...prevState.todoItems, prevState.inputValue]
+    }))
   }
 
   handleItemDelete(index) {
-    const todoItemsCopy = [...this.state.todoItems];
-    todoItemsCopy.splice(index, 1);
+    this.setState((prevState) => {
+      const todoItemsCopy = [...prevState.todoItems];
+      todoItemsCopy.splice(index, 1);
 
-    this.setState({
-      todoItems: todoItemsCopy
+      return { todoItems: todoItemsCopy }
     })
   }
 
