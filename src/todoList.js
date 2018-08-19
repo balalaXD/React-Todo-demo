@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RenderTodoItems from './TodoItem';
 
 class TodoList extends Component {
   constructor(props) {
@@ -39,20 +40,6 @@ class TodoList extends Component {
   }
 
   render() {
-    function RenderTodoItems({items, onClick}) {
-      const itemsList = items.map((item, index) => {
-        return (
-          <li key={index} onClick={() => onClick(index)} dangerouslySetInnerHTML={{__html: item}}></li>
-        )
-      })
-
-      return (
-        <ul>
-          {itemsList}
-        </ul>
-      )
-    }
-
     return (
       <React.Fragment>
         <div>
