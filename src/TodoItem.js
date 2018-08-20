@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import './TodoItem.css';
 
 class RenderTodoItems extends Component {
   shouldComponentUpdate(nextProps, nextStates) {
