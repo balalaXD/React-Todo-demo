@@ -17,8 +17,10 @@ class TodoList extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/json')
-      .then(() => console.log("succeed!"))
+    axios.get('http://localhost:3002/db')
+      .then((res) => {
+        this.setState(() => ({todoItems: res.data.todoItems}))
+      })
       .catch((err) => console.log("Fecth failed:\n", err))
   }
 
