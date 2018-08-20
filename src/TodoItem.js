@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 function RenderTodoItems({items, onClick}) {
   const itemsList = items.map((item, index) => {
     return (
-      <li key={index} onClick={() => onClick(index)} dangerouslySetInnerHTML={{__html: item}}></li>
+      <li key={item} onClick={() => onClick(index)} dangerouslySetInnerHTML={{__html: item}}></li>
     )
   })
 
