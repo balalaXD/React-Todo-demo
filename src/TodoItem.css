@@ -1,8 +1,26 @@
 li {
   animation: fadein 1s;
+  /* animation: hide 1s forwards; */
 }
 
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    color: red;
+  }
+
+  50% {
+    opacity: 0.5;
+    color: green;
+  }
+
+  100% {
+    opacity: 0;
+    color: blue;
+  }
 }
