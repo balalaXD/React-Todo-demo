@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
-function RenderTodoItems({items, onClick}) {
-  const itemsList = items.map((item, index) => {
-    return (
-      <li key={item} onClick={() => onClick(index)} dangerouslySetInnerHTML={{__html: item}}></li>
-    )
-  })
+class RenderTodoItems extends Component {
+  shouldComponentUpdate(nextProps, nextStates) {
+    if (nextProps.items !== this.props.items)
+      return true
 
-  return (
-    <ul>
-      {itemsList}
-    </ul>
-  )
+    return false
+  }
+
+  render() {
+    const itemsList = this.props.items.map((item, index) => {
+      return (
+        <li key={item}
+            onClick={() => this.props.onClick(index)}
+            dangerouslySetInnerHTML={{__html: item}}>
+        </li>
+      )
+    })
+
+    return (
+      <ul>
+        {itemsList}
+      </ul>
+    )
+  }
 }
 
 RenderTodoItems.propTypes = {

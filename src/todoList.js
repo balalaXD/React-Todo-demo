@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import RenderTodoItems from './TodoItem';
 
 class TodoList extends Component {
@@ -13,6 +14,12 @@ class TodoList extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/api/json')
+      .then(() => console.log("succeed!"))
+      .catch((err) => console.log("Fecth failed:\n", err))
   }
 
   handleInputChange(event) {
