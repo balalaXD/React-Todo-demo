@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import RenderTodoItems from './TodoItem';
+import { Button, Input,
+         Row, Col, Container } from 'reactstrap';
 
 class TodoList extends Component {
   constructor(props) {
@@ -51,13 +53,26 @@ class TodoList extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>
-          <input type="text"
-            value={this.state.inputValue}
-            onChange={this.handleInputChange}/>
-          <button onClick={this.handleButtonClick}>Add</button>
-        </div>
-        <RenderTodoItems items={this.state.todoItems} onClick={(index) => this.handleItemDelete(index)} />
+        <Container>
+          <Row>
+            <Col md={{ size: 8 }}>
+              <Input type="text" placeholder="Add your Todo here"
+                value={this.state.inputValue}
+                onChange={this.handleInputChange} />
+            </Col>
+            <Col md={{size: 2, offset: 0}}>
+              <Button 
+                onClick={this.handleButtonClick}
+                color="primary"
+                style={{width: '100%'}}>Add</Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <RenderTodoItems items={this.state.todoItems} onClick={(index) => this.handleItemDelete(index)} />
+            </Col>
+          </Row>
+        </Container>
       </React.Fragment>
     );
   }
