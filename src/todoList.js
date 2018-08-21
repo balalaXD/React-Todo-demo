@@ -8,12 +8,14 @@ import store from './store/index';
 class TodoList extends Component {
   constructor(props) {
     super(props);
-    
-    this.state = store.getState();
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
+    this.handleStoreChange = this.handleStoreChange.bind(this);
+
+    this.state = store.getState();
+    store.subscribe(this.handleStoreChange);
   }
 
   componentDidMount() {
@@ -25,18 +27,21 @@ class TodoList extends Component {
   }
 
   handleInputChange(event) {
-    const value = event.target.value;
-    // WRONG if you write this one:  {inputValue: event.target.value} cause event pooling
-    this.setState(() => ({
-      inputValue: value
-    }))
+    const action = {
+      type: 'change_input_value',
+      value: event.target.value
+    }
+
+    store.dispatch(action);
   }
 
   handleButtonClick(event) {
-    this.setState((prevState) => ({
-      inputValue: '',
-      todoItems: [...prevState.todoItems, prevState.inputValue]
-    }))
+    const action = {
+      type: 'add_todo_item',
+      value: this.state.inputValue
+    }
+
+    store.dispatch(action);
   }
 
   handleItemDelete(index) {
@@ -46,6 +51,10 @@ class TodoList extends Component {
 
       return { todoItems: todoItemsCopy }
     })
+  }
+
+  handleStoreChange() {
+    this.setState(store.getState());
   }
 
   render() {
