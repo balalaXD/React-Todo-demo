@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import RenderTodoItems from './TodoItem';
-import { Button, Input,
-         Row, Col, Container } from 'reactstrap';
 import store from './store/index';
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator'
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator';
+import TodoItemUI from './TodoItemUI';
 
 class TodoList extends Component {
   constructor(props) {
@@ -48,28 +46,12 @@ class TodoList extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Container>
-          <Row>
-            <Col md={{ size: 8 }}>
-              <Input type="text" placeholder="Add your Todo here"
-                value={this.state.inputValue}
-                onChange={this.handleInputChange} />
-            </Col>
-            <Col md={{size: 2, offset: 0}}>
-              <Button 
-                onClick={this.handleButtonClick}
-                color="primary"
-                style={{width: '100%'}}>Add</Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <RenderTodoItems items={this.state.todoItems} onClick={(index) => this.handleItemDelete(index)} />
-            </Col>
-          </Row>
-        </Container>
-      </React.Fragment>
+      <TodoItemUI
+        inputValue={this.state.inputValue}
+        todoItems={this.state.todoItems}
+        handleInputChange={this.handleInputChange}
+        handleButtonClick={this.handleButtonClick}
+        handleItemDelete={this.handleItemDelete}/>
     );
   }
 }
