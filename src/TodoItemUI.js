@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Input,
          Row, Col, Container } from 'reactstrap';
 import RenderTodoItems from './TodoItem';
