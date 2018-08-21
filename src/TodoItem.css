@@ -1,5 +1,5 @@
 li {
-  animation: fadein 1s;
+  /* animation: fadein 1s; */
   /* animation: hide 1s forwards; */
 }
 
@@ -23,4 +23,28 @@ li {
     opacity: 0;
     color: blue;
   }
+}
+
+.fade-enter {
+  color: white;
+  opacity: 0;
+}
+
+.fade-enter-active {
+  color: black;
+  opacity: 1;
+  transition: color 1s ease-in;
+}
+
+.fade-enter-done {
+  color: black;
+}
+
+.fade-appear {
+  opacity: 0.01;
+}
+
+.fade-appear-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
 }

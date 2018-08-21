@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import { CSSTransition } from 'react-transition-group';
 import './TodoItem.css';
 
 class RenderTodoItems extends Component {
@@ -13,10 +14,17 @@ class RenderTodoItems extends Component {
   render() {
     const itemsList = this.props.items.map((item, index) => {
       return (
-        <li key={item}
+        <CSSTransition
+          key={item}
+          in
+          appear={true}
+          timeout={500}
+          classNames="fade">
+          <li
             onClick={() => this.props.onClick(index)}
             dangerouslySetInnerHTML={{__html: item}}>
-        </li>
+          </li>
+        </CSSTransition>
       )
     })
 
