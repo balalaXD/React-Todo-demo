@@ -3,15 +3,13 @@ import axios from 'axios';
 import RenderTodoItems from './TodoItem';
 import { Button, Input,
          Row, Col, Container } from 'reactstrap';
+import store from './store/index';
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
     
-    this.state = {
-      inputValue: '',
-      todoItems: []
-    }
+    this.state = store.getState();
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -19,11 +17,11 @@ class TodoList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3002/db')
-      .then((res) => {
-        this.setState(() => ({todoItems: res.data.todoItems}))
-      })
-      .catch((err) => console.log("Fecth failed:\n", err))
+    // axios.get('http://localhost:3002/db')
+    //   .then((res) => {
+    //     this.setState(() => ({todoItems: res.data.todoItems}))
+    //   })
+    //   .catch((err) => console.log("Fecth failed:\n", err))
   }
 
   handleInputChange(event) {
