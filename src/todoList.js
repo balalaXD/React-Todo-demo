@@ -4,7 +4,7 @@ import RenderTodoItems from './TodoItem';
 import { Button, Input,
          Row, Col, Container } from 'reactstrap';
 import store from './store/index';
-import ACTIONTYPES from './store/actionTypes';
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator'
 
 class TodoList extends Component {
   constructor(props) {
@@ -28,29 +28,17 @@ class TodoList extends Component {
   }
 
   handleInputChange(event) {
-    const action = {
-      type: ACTIONTYPES.CHANGE_INPUT_VALUE,
-      value: event.target.value
-    }
-
+    const action = getInputChangeAction(event.target.value);
     store.dispatch(action);
   }
 
   handleButtonClick(event) {
-    const action = {
-      type: ACTIONTYPES.ADD_TODO_ITEM,
-      value: this.state.inputValue
-    }
-
+    const action = getAddItemAction(this.state.inputValue);
     store.dispatch(action);
   }
 
   handleItemDelete(index) {
-    const action = {
-      type: ACTIONTYPES.DELETE_TODO_ITEM,
-      value: index
-    }
-
+    const action = getDeleteItemAction(index);
     store.dispatch(action);
   }
 
