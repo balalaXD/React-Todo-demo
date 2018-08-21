@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import store from './store/index';
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator';
+import { getInitListAction, getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator';
 import TodoItemUI from './TodoItemUI';
 
 class TodoList extends Component {
@@ -18,11 +18,12 @@ class TodoList extends Component {
   }
 
   componentDidMount() {
-    // axios.get('http://localhost:3002/db')
-    //   .then((res) => {
-    //     this.setState(() => ({todoItems: res.data.todoItems}))
-    //   })
-    //   .catch((err) => console.log("Fecth failed:\n", err))
+    axios.get('http://localhost:3002/db')
+      .then((res) => {
+        const action = getInitListAction(res.data.todoItems);
+        store.dispatch(action);
+      })
+      .catch((err) => console.log("Fecth failed:\n", err))
   }
 
   handleInputChange(event) {

@@ -14,3 +14,8 @@ export const getDeleteItemAction = (index) => ({
   type: ACTIONTYPES.DELETE_TODO_ITEM,
   value: index
 })
+
+export const getInitListAction = (data) => ({
+  type: ACTIONTYPES.INIT_LIST_ACTION,
+  value: data
+})

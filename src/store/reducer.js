@@ -2,7 +2,7 @@ import ACTIONTYPES from './actionTypes';
 
 const defaultState = {
   inputValue: '',
-  todoItems: ['1', '2', '3']
+  todoItems: []
 }
 
 function deepCopy(json) {
@@ -33,6 +33,13 @@ export default (prevState = defaultState, action) => {
   if (action.type === ACTIONTYPES.DELETE_TODO_ITEM) {
     let newState = deepCopy(prevState)
     newState.todoItems.splice(action.value, 1)
+
+    return newState
+  }
+
+  if (action.type === ACTIONTYPES.INIT_LIST_ACTION) {
+    let newState = deepCopy(prevState)
+    newState.todoItems = action.value
 
     return newState
   }
