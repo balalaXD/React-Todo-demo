@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './TodoItem.css';
 
 class RenderTodoItems extends Component {
@@ -16,10 +16,9 @@ class RenderTodoItems extends Component {
       return (
         <CSSTransition
           key={item}
-          in
-          appear={true}
-          timeout={500}
-          classNames="fade">
+          timeout={{enter: 500, exit: 0}}
+          classNames="fade"
+          unmountOnExit>
           <li
             onClick={() => this.props.onClick(index)}
             dangerouslySetInnerHTML={{__html: item}}>
@@ -30,7 +29,9 @@ class RenderTodoItems extends Component {
 
     return (
       <ul>
-        {itemsList}
+        <TransitionGroup>
+          {itemsList}
+        </TransitionGroup>
       </ul>
     )
   }
