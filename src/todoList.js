@@ -4,6 +4,7 @@ import RenderTodoItems from './TodoItem';
 import { Button, Input,
          Row, Col, Container } from 'reactstrap';
 import store from './store/index';
+import ACTIONTYPES from './store/actionTypes';
 
 class TodoList extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class TodoList extends Component {
 
   handleInputChange(event) {
     const action = {
-      type: 'change_input_value',
+      type: ACTIONTYPES.CHANGE_INPUT_VALUE,
       value: event.target.value
     }
 
@@ -37,7 +38,7 @@ class TodoList extends Component {
 
   handleButtonClick(event) {
     const action = {
-      type: 'add_todo_item',
+      type: ACTIONTYPES.ADD_TODO_ITEM,
       value: this.state.inputValue
     }
 
@@ -45,12 +46,12 @@ class TodoList extends Component {
   }
 
   handleItemDelete(index) {
-    this.setState((prevState) => {
-      const todoItemsCopy = [...prevState.todoItems];
-      todoItemsCopy.splice(index, 1);
+    const action = {
+      type: ACTIONTYPES.DELETE_TODO_ITEM,
+      value: index
+    }
 
-      return { todoItems: todoItemsCopy }
-    })
+    store.dispatch(action);
   }
 
   handleStoreChange() {
