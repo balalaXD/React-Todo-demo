@@ -37,7 +37,7 @@ export default (prevState = defaultState, action) => {
     return newState
   }
 
-  if (action.type === ACTIONTYPES.INIT_LIST_ACTION) {
+  if (action.type === ACTIONTYPES.INIT_LIST) {
     let newState = deepCopy(prevState)
     newState.todoItems = action.value
 

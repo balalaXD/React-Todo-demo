@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import store from './store/index';
-import { getTodoListAction, getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator';
+import { getInitListAction_V2, getInputChangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreator';
 import TodoItemUI from './TodoItemUI';
 
 class TodoList extends Component {
@@ -17,8 +17,8 @@ class TodoList extends Component {
   }
 
   componentDidMount() {
-    const action = getTodoListAction()
-    store.dispatch(action)
+    const action = getInitListAction_V2();
+    store.dispatch(action);
   }
 
   handleInputChange(event) {

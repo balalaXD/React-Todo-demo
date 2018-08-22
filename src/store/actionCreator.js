@@ -16,18 +16,24 @@ export const getDeleteItemAction = (index) => ({
   value: index
 })
 
-export const getInitListAction = (data) => ({
-  type: ACTIONTYPES.INIT_LIST_ACTION,
+export const initListAction = (data) => ({
+  type: ACTIONTYPES.INIT_LIST,
   value: data
 })
 
-export const getTodoListAction = () => {
+// redux-thunk demo
+export const getInitListAction_V1 = () => {
   return (dispatch) => {
     axios.get('http://localhost:3002/db')
     .then((res) => {
-      const action = getInitListAction(res.data.todoItems);
+      const action = initListAction(res.data.todoItems);
       dispatch(action);
     })
     .catch((err) => console.log("Fecth failed:\n", err))
   }
 }
+
+// saga demo
+export const getInitListAction_V2 = () => ({
+  type: ACTIONTYPES.GET_INIT_LIST
+})
