@@ -6,9 +6,8 @@ export const getInputChangeAction = (inputValue) => ({
   value: inputValue
 })
 
-export const getAddItemAction = (inputValue) => ({
-  type: ACTIONTYPES.ADD_TODO_ITEM,
-  value: inputValue
+export const getAddItemAction = () => ({
+  type: ACTIONTYPES.ADD_TODO_ITEM
 })
 
 export const getDeleteItemAction = (index) => ({

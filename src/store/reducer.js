@@ -24,8 +24,8 @@ export default (prevState = defaultState, action) => {
 
   if (action.type === ACTIONTYPES.ADD_TODO_ITEM) {
     let newState = deepCopy(prevState)
+    newState.todoItems.push(newState.inputValue)
     newState.inputValue = ''
-    newState.todoItems.push(action.value)
 
     return newState
   }
